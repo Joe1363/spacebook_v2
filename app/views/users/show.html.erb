@@ -1,116 +1,102 @@
-<div class="user-head">
-  <div class="row">
-    <!--user-pic-->
-    <div class="small-4 columns">
-      <div class="user_pic_area">
-        <a href="#" data-reveal-id="myModal" class="no-hover">
-        <% if !@user.image.blank? %>
-          <%= image_tag @user.image.url(:large), class: "user_pic" %>
-        <% else %>
-          <img src="/system/user_default.png" class="user_pic"/>
-        <% end %>
-        </a>
-        <%= render 'image_modal' %>
-      </div><!--end user-pic-->
-    </div>
-
-    <div class="name-and-nav small-8 columns">
-      <br>
+<div class="container">
+  <div class="user-head">
+    <div class="container">
       <div class="row">
-        <div class="small-12 columns">
-          <!--user-name-->
-          <h1 class="inline"><%= @user.first_name + " " + @user.last_name %></h1>
-        <!--follow button business-->
-          <% if user_signed_in? %>
-            <% if @user != current_user && !current_user.follows?(@user) %>
-              <div class="text-center inline"><a href="/users/<%= @user.id %>/follow" class="large button fl-btn">Follow</a></div>
-            <% elsif @user != current_user && current_user.follows?(@user) %>
-              <div class="text-center inline"><a href="/users/<%= @user.id %>/unfollow" class="large button fl-btn">Unfollow</a></div>
+        <!--user-pic-->
+        <div class="col-md-3">
+          <div class="user_pic_area">
+            <a href="#" data-toggle="modal" data-target="#myModal" class="no-hover">
+            <% if !@user.image.blank? %>
+              <%= image_tag @user.image.url(:large), class: "user_pic" %>
+            <% else %>
+              <img src="/system/user_default.png" class="user_pic"/>
             <% end %>
-          <% end %>
+            </a>
+            <%= render 'image_modal' %>
+          </div><!--end user-pic-->
         </div>
-      </div>
-      <br><br><br>
 
-      <div class="row">
-        <!--sub nav bar-->
-        <nav class="top-bar" data-topbar role="navigation">
-          <section class="top-bar-section">
-            <!-- Right Nav Section -->
-            <!-- <ul class="right">
-              <li class="active"><a href="#">Right Button Active</a></li>
-              <li class="has-dropdown">
-                <a href="#">Right Button Dropdown</a>
-                <ul class="dropdown">
-                  <li><a href="#">First link in dropdown</a></li>
-                  <li class="active"><a href="#">Active link in dropdown</a></li>
-                </ul>
-              </li>
-            </ul> -->
+        <div class="name-and-nav col-md-9">
+          <br>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <!--user-name-->
+                <h1 class="inline"><%= @user.first_name + " " + @user.last_name %></h1>
+              <!--follow button business-->
+                <% if user_signed_in? %>
+                  <% if @user != current_user && !current_user.follows?(@user) %>
+                    <div class="text-center inline"><a href="/users/<%= @user.id %>/follow" class="btn btn-default fl-btn">Follow</a></div>
+                  <% elsif @user != current_user && current_user.follows?(@user) %>
+                    <div class="text-center inline"><a href="/users/<%= @user.id %>/unfollow" class="btn btn-default fl-btn">Unfollow</a></div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <br><br>
 
-            <!-- Left Nav Section -->
-            <ul class="left">
-              <li class="no-li-deco"><a href="/users/<%= @user.id %>/view_followers">Followers</a></li>
-            </ul>
-          </section>
-        </nav>
-      </div><!--row sub-nav-->
-    </div><!--name-and-nav nav-->
-  </div><!--row-->
-</div><!--user-head end-->
+
+        </div><!--name-and-nav nav-->
+      </div><!--row-->
+    </div>
+  </div><!--user-head end-->
+</div>
 <br>
 
 <!--start body-->
 <div class="user-body">
-  <div class="row">
-    <!--User pictures start-->
-    <div class="small-4 columns">
-      <div class="pictures-area">
+  <div class="container">
+    <div class="row">
+      <!--User pictures start-->
+      <div class="col-md-4">
+        <div class="pictures-area">
 
-        <div class="pictures-header">
-          <p class="margin-auto">Pictures (0)</p> <!--TODO add variable for number of pictures-->
-          <hr>
-        </div>
+          <div class="pictures-header">
+            <p class="margin-auto">Pictures (0)</p> <!--TODO add variable for number of pictures-->
+            <hr>
+          </div>
 
-        <div class="pictures-body">
+          <div class="pictures-body">
+          </div>
         </div>
       </div>
-    </div>
 
-    <!--start posts-->
-    <div class="posts small-8 columns">
-      <!--start make-posts-->
-      <% if current_user == @user %>
-      <div class="make-post">
-        <div class="make-post-top">
-          <p><strong>Make a post</strong></p>
-        </div>
-
-        <div class="make-post-body">
-          <form role="form" class="form-group new-post" id="new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
-          <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
-        </div>
-
-        <div class="make-post-submit">
-          <input class="button med" type="submit" name="commit" value="Post"/>
-        </div>
-      </form>
-
-      </div><!--end make-post-->
-      <br>
-      <% end %>
-
-      <!--start posts-display-->
-      <div class="posts-display">
-        <% @posts.each do |post| %>
-          <div class="single-post">
-            <p><%= post.content %></p>
-            <hr>
-            <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
+      <!--start posts-->
+      <div class="posts col-md-8">
+        <!--start make-posts-->
+        <% if current_user == @user %>
+        <div class="make-post">
+          <div class="make-post-top">
+            <p><strong>Make a post</strong></p>
           </div>
-        <% end %>
-      </div><!--post-display-->
-    </div><!--end posts-->
 
-  </div><!--end row-->
+          <div class="make-post-body">
+            <form role="form" class="form-group new-post" id="new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+            <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
+          </div>
+
+          <div class="make-post-submit">
+            <input class="button med" type="submit" name="commit" value="Post"/>
+          </div>
+        </form>
+
+        </div><!--end make-post-->
+        <br>
+        <% end %>
+
+        <!--start posts-display-->
+        <div class="posts-display">
+          <% @posts.each do |post| %>
+            <div class="single-post">
+              <p><%= post.content %></p>
+              <hr>
+              <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
+            </div>
+          <% end %>
+        </div><!--post-display-->
+      </div><!--end posts-->
+
+    </div><!--end row-->
+  </div>
 </div><!--end user-body-->
