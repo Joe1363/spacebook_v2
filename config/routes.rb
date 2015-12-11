@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :posts
+  get 'users/index'
+  get 'users/show'
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  match('users/:id/add_profile_image' , {:via => :post, :to => 'users#add_profile_image'})
+  match('users/:id/new_post' , {:via => :post, :to => 'users#new_post'})
+  match('users/:id/follow' , {:via => :get, :to => 'users#follow'})
+  match('users/:id/unfollow' , {:via => :get, :to => 'users#unfollow'})
+  match('users/:id/view_followers' , {:via => :get, :to => 'users#view_followers'})
+  match('users/:id' , {:via => :get, :to => 'users#show'})
+
+  root 'home#index'
+  get 'home/index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
