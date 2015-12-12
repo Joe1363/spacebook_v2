@@ -1,24 +1,15 @@
 <div class="container">
   <div class="user-head">
-    <div class="container">
       <div class="row">
         <!--user-pic-->
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="user_pic_area">
-            <a href="#" data-toggle="modal" data-target="#myModal" class="no-hover">
-            <% if !@user.image.blank? %>
-              <%= image_tag @user.image.url(:large), class: "user_pic" %>
-            <% else %>
-              <img src="/system/user_default.png" class="user_pic"/>
-            <% end %>
-            </a>
-            <%= render 'image_modal' %>
+            <%= render "profile_pic" %>
           </div><!--end user-pic-->
         </div>
 
-        <div class="name-and-nav col-md-9">
+        <div class="name-and-nav col-md-8">
           <br>
-          <div class="container">
             <div class="row">
               <div class="col-md-12">
                 <!--user-name-->
@@ -32,14 +23,20 @@
                   <% end %>
                 <% end %>
               </div>
-            </div>
           </div>
           <br><br>
 
+          <div class="container">
+            <!--sub nav bar-->
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-default no-hover-color"><a href="/users/<%= @user.id %>/view_followers">Followers</a></button>
+              <button type="button" class="btn btn-default">Middle</button>
+              <button type="button" class="btn btn-default">Right</button>
+            </div>
+          </div><!--container sub-nav-->
 
         </div><!--name-and-nav nav-->
       </div><!--row-->
-    </div>
   </div><!--user-head end-->
 </div>
 <br>
@@ -54,10 +51,13 @@
 
           <div class="pictures-header">
             <p class="margin-auto">Pictures (0)</p> <!--TODO add variable for number of pictures-->
-            <hr>
+            <hr class="no-margin">
           </div>
 
           <div class="pictures-body">
+            <br>
+            <p class="text-center">Add pictures to share with your followers</p>
+            <br>
           </div>
         </div>
       </div>
@@ -90,7 +90,7 @@
           <% @posts.each do |post| %>
             <div class="single-post">
               <p><%= post.content %></p>
-              <hr>
+              <hr class="no-margin">
               <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
             </div>
           <% end %>

@@ -1,3 +1,21 @@
+<!--check for user-->
+<% if current_user == @user %>
+  <a href="#" data-toggle="modal" data-target="#myModal" class="no-hover-color">
+  <% if !@user.image.blank? %>
+    <%= image_tag @user.image.url(:large), class: "user_pic" %>
+  <% else %>
+    <img src="/system/user_default.png" class="user_pic"/>
+  <% end %>
+  </a>
+<% else %>
+  <% if !@user.image.blank? %>
+    <%= image_tag @user.image.url(:large), class: "user_pic" %>
+  <% else %>
+    <img src="/system/user_default.png" class="user_pic"/>
+  <% end %>
+<% end %>
+
+<!--modal business-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -40,7 +58,7 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
