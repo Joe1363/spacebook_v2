@@ -23,7 +23,7 @@ $(document).ready(function(){
   ]});
 
   // Initialize the tour
-  tour.init(true);
+  tour.init();
 
   // Start the tour
   tour.start(true);
