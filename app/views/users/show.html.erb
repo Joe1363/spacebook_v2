@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-md-12">
                 <!--user-name-->
-                <h1 class="inline"><%= @user.first_name + " " + @user.last_name %></h1>
+                <h1 class="inline" id="t1"><%= @user.first_name + " " + @user.last_name %></h1>
               <!--follow button business-->
                 <% if user_signed_in? %>
                   <% if @user != current_user && !current_user.follows?(@user) %>
@@ -26,7 +26,7 @@
           </div>
           <br><br>
 
-          <div class="container">
+          <div class="misc-buttons">
             <!--sub nav bar-->
             <div class="btn-group" role="group" aria-label="...">
               <button type="button" class="btn btn-default no-hover-color"><a href="/users/<%= @user.id %>/view_followers">Followers</a></button>
@@ -50,7 +50,7 @@
         <div class="pictures-area">
 
           <div class="pictures-header">
-            <p class="margin-auto">Pictures (0)</p> <!--TODO add variable for number of pictures-->
+            <p class="margin-auto" id="t2">Pictures (0)</p> <!--TODO add variable for number of pictures-->
             <hr class="no-margin">
           </div>
 
@@ -68,11 +68,11 @@
         <% if current_user == @user %>
         <div class="make-post">
           <div class="make-post-top">
-            <p><strong>Make a post</strong></p>
+            <p id="post"><strong>Make a post</strong></p>
           </div>
 
           <div class="make-post-body">
-            <form role="form" class="form-group new-post" id="new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+            <form role="form" class="form-group new-post" id="t3" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
             <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
           </div>
 

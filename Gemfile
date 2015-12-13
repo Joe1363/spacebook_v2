@@ -27,6 +27,8 @@ gem "socialization"
 
 gem "paperclip"
 
+gem 'bootstrap-tour-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
