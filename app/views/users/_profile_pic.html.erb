@@ -2,9 +2,9 @@
 <% if current_user == @user %>
   <a href="#" data-toggle="modal" data-target="#myModal" class="no-hover-color">
   <% if !@user.image.blank? %>
-    <%= image_tag @user.image.url(:large), class: "user_pic" %>
+    <%= image_tag @user.image.url(:large), class: "user_pic", id: "t11" %>
   <% else %>
-    <img src="/system/user_default.png" class="user_pic"/>
+    <img src="/system/user_default.png" class="user_pic", id="t11"/>
   <% end %>
   </a>
 <% else %>
