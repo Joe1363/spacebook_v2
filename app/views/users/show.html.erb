@@ -68,11 +68,11 @@
         <% if current_user == @user %>
         <div class="make-post">
           <div class="make-post-top">
-            <p id="post"><strong>Make a post</strong></p>
+            <p id="t3"><strong>Make a post</strong></p>
           </div>
 
           <div class="make-post-body">
-            <form role="form" class="form-group new-post" id="t3" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+            <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
             <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
           </div>
 
@@ -100,3 +100,34 @@
     </div><!--end row-->
   </div>
 </div><!--end user-body-->
+
+<% if @user == current_user %>
+  <script>
+    var tour = new Tour({
+      keyboard: true,
+      storage: false,
+      steps: [
+      {
+        element: "#t1",
+        title: "Hey you!",
+        content: "Want a tour of this site?",
+        placement: "bottom"
+      },
+      {
+        element: "#t2",
+        title: "Add pictures",
+        content: "Eventually you'll be able to add pictures."
+      },
+      {
+        element: "#t3",
+        title: "Make a post",
+        content: "Write stuff then post it.",
+        placement: "top"
+      }
+    ]});
+
+    // Initialize and start the tour
+    tour.init();
+    tour.start();
+  </script>
+<% end %>
