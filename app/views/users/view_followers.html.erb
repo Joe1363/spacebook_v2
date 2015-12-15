@@ -4,7 +4,7 @@
     <div class="follow-space">
       <div class="col-md-6">
         <div class="col-md-12 fl-back">
-          <h3 class="text-center">Currently Following (<%= @following.length %>):</h3>
+          <h3 class="text-center" id="t11">Currently Following (<%= @following.length %>):</h3>
           <% if @following != [] %>
             <% @following.each do |f| %>
                 <div class="col-md-3 user_box inline">
@@ -28,7 +28,7 @@
 
       <div class="col-md-6">
         <div class="col-md-12 fl-back">
-          <h3 class="text-center">Current Followers (<%= @yourFollowers.length %>):</h3>
+          <h3 class="text-center" id="t12">Current Followers (<%= @yourFollowers.length %>):</h3>
           <% if @yourFollowers != [] %>
             <% @yourFollowers.each do |f| %>
               <div class="col-md-3 user_box inline">
