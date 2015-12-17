@@ -66,22 +66,64 @@
       <div class="posts col-md-8">
         <!--start make-posts-->
         <% if current_user == @user %>
-        <div class="make-post">
-          <div class="make-post-top">
-            <p id="t3"><strong>Make a post</strong></p>
+
+          <div>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#post" aria-controls="home" role="tab" data-toggle="tab">Make a post</a></li>
+              <li role="presentation"><a href="#picture" aria-controls="profile" role="tab" data-toggle="tab">Post Picture</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <!-- text post -->
+              <div role="tabpanel" class="tab-pane active" id="post">
+                <div class="make-post">
+                  <div class="make-post-top">
+                    <p id="t3"><strong>Make a post</strong></p>
+                  </div>
+                  <!-- form -->
+                  <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+                    <div class="make-post-body">
+                      <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
+                    </div>
+
+                    <div class="make-post-submit">
+                      <input class="btn btn-primary" type="submit" name="commit" value="Post"/>
+                    </div>
+                  </form>
+                </div><!--end make-post-->
+              </div>
+  <!-- TODO ------------------------------------------------------------------------------->
+              <!-- picture post -->
+              <div role="tabpanel" class="tab-pane" id="picture">
+
+                <div class="make-post">
+                  <div class="make-post-top">
+                    <p><strong>Post a picture</strong></p><!--TODO add picture field-->
+                  </div>
+
+                  <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_picture" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+                    <div class="make-post-body">
+                      <textarea class="form-control" rows="2" name="post_content" id="picture_content"></textarea>
+                    </div>
+
+                    <div class="make-post-submit">
+                      <input class="btn btn-primary" type="submit" name="commit" value="Post"/>
+                    </div>
+                  </form>
+                </div><!-- end post-picture -->
+
+              </div>
+
+            </div>
           </div>
 
-          <div class="make-post-body">
-            <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
-            <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
-          </div>
 
-          <div class="make-post-submit">
-            <input class="button med" type="submit" name="commit" value="Post"/>
-          </div>
-        </form>
 
-        </div><!--end make-post-->
+
+
+
         <br>
         <% end %>
 
