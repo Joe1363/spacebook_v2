@@ -103,12 +103,7 @@
 
 <!-- User tour -->
 <% if @user == current_user %>
-  <script>
-    var userid = "<%= @user.id %>";
-  </script>
-    <%= javascript_include_tag "tour.js" %>
-
-    <script>
-    tourStart();
-    </script>
+  <script>var userid = "<%= @user.id %>";</script>
+  <%= javascript_include_tag "tour.js" %>
+  <script>tourStart();</script>
 <% end %>

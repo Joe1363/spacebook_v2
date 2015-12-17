@@ -1,9 +1,5 @@
-alert(userid);
 var tour = new Tour({
-// function tour(id) ({
-  keyboard: true,
   storage: false,
-  // backdrop: true,
   steps: [
   {
     element: "#t1",
@@ -47,6 +43,20 @@ var tour = new Tour({
     placement: "bottom"
   },
   {
+    element: "#t12",
+    title: "Following",
+    content: "View who you're stalking.",
+    placement: "bottom",
+    path: "/users/" + userid + "/view_followers/",
+  },
+  {
+    element: "#t13",
+    title: "Follow page",
+    content: "View who's stalking you.",
+    placement: "bottom",
+    path: "/users/" + userid + "/view_followers/"
+  },
+  {
     element: "#t7",
     title: "Your profile",
     content: "Click here anytime to get back to your profile.",
@@ -69,27 +79,10 @@ var tour = new Tour({
     title: "Logout",
     content: "For when you realize you've wasted enough time.",
     placement: "bottom"
-  },
-  {
-    element: "#t11",
-    title: "Following",
-    content: "View who you're stalking.",
-    placement: "bottom",
-    poth: "/users/" + userid + "/view_followers/",
-    host: "/users/" + userid + "/view_followers/"
-  },
-  {
-    element: "#t12",
-    title: "Follow page",
-    content: "View who's stalking you.",
-    placement: "bottom",
-    host: "/users/" + userid + "/view_followers/"
-
   }
 ]});
 
 function tourStart() {
-
   // Initialize and start the tour
   tour.init();
   tour.start();
