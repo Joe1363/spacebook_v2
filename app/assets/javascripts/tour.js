@@ -2,12 +2,6 @@ var tour = new Tour({
   storage: false,
   steps: [
   {
-    element: "#t1",
-    title: "Hey you!",
-    content: "Want a tour of this site? Click next.",
-    placement: "bottom"
-  },
-  {
     element: "#t11",
     title: "Add a profile picture",
     content: "Add a picture of your ugly mug.",
@@ -16,7 +10,7 @@ var tour = new Tour({
   {
     element: "#t2",
     title: "Add pictures",
-    content: "Eventually you'll be able to add pictures when I get around to it."
+    content: "Add pictures for your friends and random internet stalkers to see."
   },
   {
     element: "#t3",
@@ -33,7 +27,7 @@ var tour = new Tour({
   {
     element: "#t5",
     title: "Placeholder",
-    content: "This doesn't do anything yet.",
+    content: "This doesn't do anything and it may never.",
     placement: "bottom"
   },
   {
