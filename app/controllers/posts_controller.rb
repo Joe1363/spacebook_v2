@@ -54,11 +54,40 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    @user = current_user
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to "/users/#{@user.id}" }
       format.json { head :no_content }
     end
+  end
+
+  def new_post
+    @user = current_user
+    @post = Post.new(:content => params[:post_content])
+    @post.save
+    @user.posts << @post
+    @user.save
+    @post = Post.where(:user_id => current_user.id)
+
+    redirect_to "/users/#{@user.id}"
+  end
+
+  def new_picture
+    @user = current_user
+    @post = Post.new
+    @post.content = params[:post_content]
+    @picture = Picture.new
+    @picture.image = params[:user_picture]
+    @picture.save
+    @post.picture = @picture
+    @post.save
+    @user.posts << @post
+    @user.pictures << @picture
+    @user.save
+    @post = Post.where(:user_id => current_user.id)
+
+    redirect_to "/users/#{@user.id}"
   end
 
   private
@@ -69,6 +98,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id, :content)
+      params.require(:post).permit(:user_id, :content, :image, :user_picture)
     end
 end

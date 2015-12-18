@@ -11,21 +11,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { render 'show.html.erb', status: 200 }
       format.json { render json: @changed, status: 200 }
-      # format.json { render :json => @user.to_json(
-      #   :only => [:id, :first_name, :last_name]), status: 200 }
     end
 
-  end
-
-  def new_post
-    @user = current_user
-    @post = Post.new(:content => params[:post_content])
-    @post.save
-    @user.posts << @post
-    @user.save
-    @post = Post.where(:user_id => current_user.id)
-
-    redirect_to action: :show
   end
 
   def follow
@@ -55,6 +42,6 @@ class UsersController < ApplicationController
 
 private
   def user_params
-     params.require(:user).permit(:first_name, :last_name, :posts, :image, posts_attributes: [:id, :content, :_destroy])
+     params.require(:user).permit(:first_name, :last_name, :posts, :image, :user_picture, posts_attributes: [:id, :content, :_destroy])
   end
 end

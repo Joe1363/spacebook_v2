@@ -50,8 +50,7 @@
         <div class="pictures-area">
 
           <div class="pictures-header">
-            <p class="margin-auto" id="t2">Pictures (0)</p> <!--TODO add variable for number of pictures-->
-            <hr class="no-margin">
+            <p class="margin-auto" id="t2">Pictures (<%= @user.pictures.length %>)</p>
           </div>
 
           <div class="pictures-body">
@@ -78,52 +77,43 @@
             <div class="tab-content">
               <!-- text post -->
               <div role="tabpanel" class="tab-pane active" id="post">
-                <div class="make-post">
-                  <div class="make-post-top">
-                    <p id="t3"><strong>Make a post</strong></p>
-                  </div>
+                <div class="make-post" id="text-post">
                   <!-- form -->
-                  <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+                  <form role="form" class="form-group new-post" action="/posts/<%= @user.id %>/new_post" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
                     <div class="make-post-body">
                       <textarea class="form-control" rows="2" name="post_content" id="post_content"></textarea>
                     </div>
 
                     <div class="make-post-submit">
-                      <input class="btn btn-primary" type="submit" name="commit" value="Post"/>
+                      <input class="btn btn-primary right-justify" type="submit" name="commit" value="Post"/>
                     </div>
                   </form>
+
                 </div><!--end make-post-->
               </div>
-  <!-- TODO ------------------------------------------------------------------------------->
+
               <!-- picture post -->
               <div role="tabpanel" class="tab-pane" id="picture">
-
                 <div class="make-post">
-                  <div class="make-post-top">
-                    <p><strong>Post a picture</strong></p><!--TODO add picture field-->
-                  </div>
-
-                  <form role="form" class="form-group new-post" action="/users/<%= @user.id %>/new_picture" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
+                  <!-- form -->
+                  <form role="form" class="form-group new-post" action="/posts/<%= @user.id %>/new_picture" enctype="multipart/form-data" accept-charset="UTF-8" method="post">
                     <div class="make-post-body">
                       <textarea class="form-control" rows="2" name="post_content" id="picture_content"></textarea>
                     </div>
 
                     <div class="make-post-submit">
+                      <div id="user_picture" class="form-group image-file inline">
+                        <input type="file" class="file" name="user_picture" id="user_picture"/>
+                      </div>
                       <input class="btn btn-primary" type="submit" name="commit" value="Post"/>
                     </div>
                   </form>
-                </div><!-- end post-picture -->
 
-              </div>
+                </div><!-- end post-picture -->
+              </div><!-- tab panel end -->
 
             </div>
           </div>
-
-
-
-
-
-
         <br>
         <% end %>
 
@@ -131,10 +121,25 @@
         <div class="posts-display">
           <% @posts.each do |post| %>
             <div class="single-post">
+              <% if !post.picture.nil? %>
+                <%= image_tag post.picture.image.url(:large), class: "image-center post-picture" %>
+              <% end %>
               <p><%= post.content %></p>
               <hr class="no-margin">
-              <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
-            </div>
+              <div class="post-bottom">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="text-right"><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- single post end -->
+            <br>
           <% end %>
         </div><!--post-display-->
       </div><!--end posts-->

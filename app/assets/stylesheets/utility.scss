@@ -2,6 +2,13 @@
   margin: auto;
 }
 
+.image-center {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 8px 8px;
+}
+
 .no-li-deco {
   list-style: none;
 }
@@ -16,12 +23,4 @@
 
 .no-margin {
   margin: 0px;
-}
-
-.red {
-  color: red;
-}
-
-.redbg {
-  background-color: red;
 }
