@@ -16,7 +16,9 @@
                 <h1 class="inline" id="t1"><%= @user.first_name + " " + @user.last_name %></h1>
               <!--follow button business-->
                 <% if user_signed_in? %>
-                  <% if @user != current_user && !current_user.follows?(@user) %>
+                  <% if @user == current_user %>
+                    <i data-toggle="tooltip" title="View a walkthrough of your profile page" class="fa fa-info-circle fa-2x pointer info" id='info_circle'></i>
+                  <% elsif @user != current_user && !current_user.follows?(@user) %>
                     <div class="text-center inline"><a href="/users/<%= @user.id %>/follow" class="btn btn-default fl-btn">Follow</a></div>
                   <% elsif @user != current_user && current_user.follows?(@user) %>
                     <div class="text-center inline"><a href="/users/<%= @user.id %>/unfollow" class="btn btn-default fl-btn">Unfollow</a></div>
@@ -55,7 +57,7 @@
 
           <div class="pictures-body">
             <br>
-            <% if @user.pictures != 0 %>
+            <% if @user.pictures.length != 0 %>
               <div class="row">
                 <% @user.pictures.each do |pic| %>
                   <div class="col-xs-3 col-sm-3 col-md-4">
@@ -157,10 +159,3 @@
     </div><!--end row-->
   </div>
 </div><!--end user-body-->
-
-<!-- User tour -->
-<% if @user == current_user %>
-  <script>var userid = "<%= @user.id %>";</script>
-  <%= javascript_include_tag "tour.js" %>
-  <script>tourStart();</script>
-<% end %>

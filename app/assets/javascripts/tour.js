@@ -43,20 +43,6 @@ var tour = new Tour({
     placement: "bottom"
   },
   {
-    element: "#t12",
-    title: "Following",
-    content: "View who you're stalking.",
-    placement: "bottom",
-    path: "/users/" + userid + "/view_followers/",
-  },
-  {
-    element: "#t13",
-    title: "Follow page",
-    content: "View who's stalking you.",
-    placement: "bottom",
-    path: "/users/" + userid + "/view_followers/"
-  },
-  {
     element: "#t7",
     title: "Your profile",
     content: "Click here anytime to get back to your profile.",
@@ -84,6 +70,6 @@ var tour = new Tour({
 
 function tourStart() {
   // Initialize and start the tour
-  tour.init();
-  tour.start();
+  tour.init(true);
+  tour.start(true);
 }
