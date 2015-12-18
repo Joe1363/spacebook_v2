@@ -15,26 +15,30 @@
     <body>
       <!--navbar start-->
       <nav class="navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <ul class="nav navbar-nav navbar-left">
-              <li class="name navbar-text">Spacebook</li>
+        <div class="container">
+          <div class="navbar-brand">Spacebook</div>
+          <!-- collapsed nav -->
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".cnav" aria-expanded="false">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <div class="collapse navbar-collapse cnav">
+            <!-- Right Nav Section -->
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+                <li id="t7"><a href="/users/<%= current_user.id %>"><%= current_user.first_name %></a></li>
+                <li id="t8"><a href="/users/index">See Users</a></li>
+                <li id="t9"><%= link_to 'Edit profile', edit_user_registration_path %></li>
+                <li id="t10"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+               <% else %>
+                <li><%= link_to "Login", new_user_session_path %></li>
+                <li><%= link_to "Sign up", new_user_registration_path %></li>
+               <% end %>
             </ul>
           </div>
-
-          <!-- Right Nav Section -->
-          <ul class="nav navbar-nav navbar-right">
-            <% if user_signed_in? %>
-              <li id="t7"><a href="/users/<%= current_user.id %>"><%= current_user.first_name %></a></li>
-              <li id="t8"><a href="/users/index">See Users</a></li>
-              <li id="t9"><%= link_to 'Edit profile', edit_user_registration_path %></li>
-              <li id="t10"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-             <% else %>
-              <li><%= link_to "Login", new_user_session_path %></li>
-              <li><%= link_to "Sign up", new_user_registration_path %></li>
-             <% end %>
-          </ul>
-        </div>
+        </div><!-- container -->
       </nav>
       <!--end navbar-->
 

@@ -2,13 +2,13 @@
   <div class="user-head">
       <div class="row">
         <!--user-pic-->
-        <div class="col-md-4">
+        <div class="col-xs-4 col-sm-4 col-md-4">
           <div class="user_pic_area">
             <%= render "profile_pic" %>
           </div><!--end user-pic-->
         </div>
 
-        <div class="name-and-nav col-md-8">
+        <div class="name-and-nav col-xs-8 col-sm-8 col-md-8">
           <br>
             <div class="row">
               <div class="col-md-12">
@@ -55,7 +55,17 @@
 
           <div class="pictures-body">
             <br>
-            <p class="text-center">Add pictures to share with your followers</p>
+            <% if @user.pictures != 0 %>
+              <div class="row">
+                <% @user.pictures.each do |pic| %>
+                  <div class="col-xs-3 col-sm-3 col-md-4">
+                    <%= image_tag pic.image.url(:med), class: "pic_thumb" %>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-center">Add pictures to share with your followers</p>
+            <% end %>
             <br>
           </div>
         </div>

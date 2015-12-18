@@ -2,7 +2,7 @@
 <% if current_user == @user %>
   <a href="#" data-toggle="modal" data-target="#myModal" class="no-hover-color">
   <% if !@user.image.blank? %>
-    <%= image_tag @user.image.url(:large), class: "user_pic", id: "t11" %>
+    <%= image_tag @user.image.url(:large), class: "user_pic", id: "t11", :options => { "data-toggle" => "tooltip"}, title: "Add or change your profile picture" %>
   <% else %>
     <img src="/system/user_default.png" class="user_pic", id="t11"/>
   <% end %>
