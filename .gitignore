@@ -11,3 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+#papeclip uploads
+/public/system/pictures
+/public/system/users
