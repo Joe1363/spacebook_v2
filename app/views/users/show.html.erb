@@ -63,8 +63,6 @@
                   <div class="col-xs-3 col-sm-3 col-md-4">
                       <%= image_tag pic.image.url(:med), class: "pic_thumb pointer", "data-toggle" => "modal", "data-target" => "#album_pic#{ pic.id }" %>
 
-
-
                     <!--modal business-->
                     <div class="modal fade" id="album_pic<%= pic.id %>" tabindex="-1" role="dialog" aria-labelledby="album_pic<%= pic.id %>">
                         <div class="modal-dialog" role="document">
@@ -89,7 +87,6 @@
                         </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                     </div><!-- /.modal -->
-
 
                   </div>
                 <% end %>
@@ -162,8 +159,8 @@
         <div class="posts-display">
           <% @posts.each do |post| %>
             <div class="single-post">
-              <% if !post.picture.nil? %>
-                <%= image_tag post.picture.image.url(:large), class: "image-center post-picture" %>
+              <% if !@picture.where(:post_id => post.id).first.nil? %>
+                <%= image_tag @picture.where(:post_id => post.id).first.image.url(:large), class: "image-center post-picture" %>
               <% end %>
               <p><%= post.content %></p>
               <hr class="no-margin">

@@ -77,11 +77,11 @@ class PostsController < ApplicationController
     @user = current_user
     @post = Post.new
     @post.content = params[:post_content]
+    @post.save
     @picture = Picture.new
     @picture.image = params[:user_picture]
+    @picture.post_id = @post.id
     @picture.save
-    @post.picture = @picture
-    @post.save
     @user.posts << @post
     @user.pictures << @picture
     @user.save

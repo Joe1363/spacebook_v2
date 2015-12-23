@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.order("updated_at DESC")
+    @picture = Picture.all
+    @pid
+    # @picture = Picture.where(:user_id => @user.id)
     @changed = {:user => {:userid => @user.id, :first => @user.first_name, :last => @user.last_name}}
 
     respond_to do |format|
