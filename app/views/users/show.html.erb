@@ -171,7 +171,9 @@
                     <p>Posted: <%= time_ago_in_words(post.created_at) %> ago</p>
                   </div>
                   <div class="col-md-6">
-                    <p class="text-right"><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                    <% if @user == current_user %>
+                      <p class="text-right"><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                    <% end %>
                   </div>
 
                 </div>
